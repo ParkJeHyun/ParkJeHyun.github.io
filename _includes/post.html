@@ -1,0 +1,38 @@
+<div class="content" id="home">
+  <div id="sidebar-button">
+    <img src="/images/sidebar-button.png">
+  </div>
+  <div id="post-info">
+    <div id="cover-photo-container">
+      <img id="cover-photo" src="/images/{{ page.cover }}">
+    </div>
+    <div id="info-container">
+      <h1 id="title">{{ page.title }}</h1>
+      <span id="date">{{ page.date | date_to_string }}</span>
+    </div>
+  </div>
+
+  <div class="post">
+    {{ content }}
+  </div>
+
+  <div class="fb-comments" data-href="{{  site.url }}{{  page.url }}" data-numposts="5"></div>
+  
+  <div
+  	class="fb-like"
+  	data-share="true"
+  	data-width="450"
+  	data-show-faces="true">
+  </div>
+
+  <div class="colophon">
+    <p>
+      <span id="pub-date">Published on {{ page.date | date_to_string }}</span> <span class="separator">&bull;</span>
+      <span id="social">Find me on <a href="">Twitter</a>!</span>
+    </p>
+	<p>
+		<span id="pub-assign">NHN Entertainment TOAST Rookie 3rd PSJ</span>
+	</p>
+	
+  </div>
+</div>

@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-{% include head.html %}
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>F! - {{ page.title }}</title>
+      <meta name="viewport" content="width=device-width">
 
-<body class="preload">
-    <div class="top"></div>
-    <div class="profile" style="background-image: url({{ site.background }});">
-        <img src="http://www.gravatar.com/avatar/{{ site.gravatar_hash }}?s=140" class="img-circle" />
-        <h3>{{ site.name }}</h3>
-        <p>{{ site.description }}</p>
-        <ul class="social">
-            {% if site.github %}
-            <a type="button" href="http://github.com/{{ site.github }}">
-                <i class="fa fa-github"></i>
-            </a>
-            {% endif %} {% if site.twitter %}
-            <a type="button" href="http://twitter.com/{{ site.twitter }}">
-                <i class="fa fa-twitter"></i>
-            </a>
-            {% endif %} {% if site.linkedin %}
-            <a type="button" href="http://linkedin.com/in/{{ site.linkedin }}">
-                <i class="fa fa-linkedin"></i>
-            </a>
-            {% endif %} {% if site.pinterest %}
-            <a type="button" href="http://pinterest.com/{{ site.pinterest }}">
-                <i class="fa fa-pinterest"></i>
-            </a>
-            {% endif %} {% if site.facebook %}
-            <a type="button" href="http://facebook.com/{{ site.facebook }}">
-                <i class="fa fa-facebook"></i>
-            </a>
-            {% endif %}
-        </ul>
-    </div>
-    <div class="posts">
+      <!-- syntax highlighting CSS -->
+      <link rel="stylesheet" href="/css/syntax.css">
+
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="/css/main.css">
+
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="/css/responsive.css">
+
+      <!-- Google Fonts -->
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="site">
+      <div class="sidebar" id="sidebar">
+        <div class="header">
+          <h1 class="title"><a href="/"><img id="logo" src="/images/logo.png"></a></h1>
+          <span class="tagline">기술 및 취미 정리 블로그입니다.</span>
+        </div>
+        <div class="posts">
+          <ul class="posts-list">
+            {% for post in site.posts %}
+              <li class="post-link">
+                <a class="post-title" href="{{ post.url }}">
+                  <span class="post-date">{{ post.date | date_to_string }}</span>
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="footer">
+          <span id="footer-links">
+            <a href="" class="footer-link">About</a> <span class="separator">&bull;</span>
+            <a href="" class="footer-link">Twitter</a> <span class="separator">&bull;</span>
+            <a href="" class="footer-link">GitHub</a>
+          </span>
+        </div>
+      </div>
+
         {{ content }}
+
     </div>
-</body>
-<script type="text/javascript">
-    window.onload = function(){
-        document.getElementsByTagName("BODY")[0].classList.remove("preload");
-    }
-</script>
+    <script src="/scripts/responsive.js" type="text/javascript"></script>
+	<script>
+	  (function() {
+		var cx = '004350555059613970476:4xptbevuxok';
+		var gcse = document.createElement('script');
+		gcse.type = 'text/javascript';
+		gcse.async = true;
+		gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+			'//cse.google.com/cse.js?cx=' + cx;
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(gcse, s);
+	  })();
+	</script>
+	<gcse:search></gcse:search>
+	
+  </body>
 </html>
