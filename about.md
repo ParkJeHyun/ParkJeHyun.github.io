@@ -4,14 +4,14 @@ title: About
 permalink: /about/
 ---
 
-Sang Jun Park
+Park Je Hyun
 
 ### More Information
 
-Toast Rookie 3rd 
+Developer 
 NHN Entertainment 
-Park Sang Jun
+Park JeHyun
 
 ### Contact me
 
-[sangjun.park@nhnent.com](mailto:sangjun.park@nhnent.com)
+[jehyun.park@nhnent.com](mailto:jehyun.park@nhnent.com)
