@@ -1,8 +1,8 @@
-name: sayjuni21c blog
+name: parkjehyun blog
 
 highlighter: pygments
 markdown: kramdown
 pygments: true
 comments: yes
-url: "http://sayjuni21c.github.io"
+url: "http://ParkJeHyun.github.io"
 encoding: UTF-8
