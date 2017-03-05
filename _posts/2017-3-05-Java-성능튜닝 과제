@@ -1,0 +1,103 @@
+---
+layout: post
+title: Java-성능튜닝 과제
+cover: cover.jpg
+---
+
+MAP
+	키와 값으로 구성된 객체의 집합을 처리 위한 인터페이스로 키값의 중복을 허용하지 않는다.
+SET
+	중복을 허용하지 않는 집합
+LIST 
+	순서가 있는 집합, 중복데이터를 허용하고 인덱스를 사용할 수 있다. 
+QUEUE
+	FIFO를 따르는 인터페이스로 List와 비교했을 때 데이터 삭제에서 좋은 성능을 보인다.
+
+
+```
+	public void printClassInfo(Object object) {
+        System.out.println("Class Name : " + object.getClass().getName());
+
+        Method[] methodList = object.getClass().getMethods();
+
+        System.out.println("Methods Size : " + methodList.length);
+        for(int i=0;i<methodList.length;i++) {
+            System.out.println("Method Name : " + methodList[i].getName());
+
+        }
+    }
+
+```
+
+SAX 와 DOM 
+	1. SAX(Simple API for XML) 
+		package name : org.xml.sax
+		순차적으로 처리하는 이벤트 기반의 모델 따라서 메모리의 부담이 적은 편
+		원하는 데이터의 생성을 위해 처리 방법을 일일히 결정해서 구현해야한다.
+
+	2. DOM(Document Object Model)
+		package name : org.w3c.dom
+		모든 XML을 읽어서 트리를 만든 후 XML을 처리 따라서 메모리의 부담이 많은 편
+		따로 핸들러의 지정없이 파싱한 데이터를 Document 클래스의 객체에 담아서 리턴해주므로 처리가 편함
+
+
+JMX란?
+JMX(Java Management Extensions)는 어플리케이션 서버의 모니터링을 위해 툴의 사용 없이 어느정도 유용한 정보를 볼 수 있도록 해주는 기술
+JDK 5.0 버전 이상의 서버에서는 필수로 제공
+
+JMX의 레벨은 다음과 같다.
+
+인스트루먼테이션 레벨 
+	하나 이상의 MBeans(Management Beans)를 제공하고 MBeans에서 필요한 리소스 정보를 취합하여 에이전트로 전달
+	API를 통해 최소한의 노력으로 처리 내용을 전달할수 있음
+
+에이전트 레벨
+	에이전트의 구현을 위한 스펙 제공
+	에이전트는 Mbean서버와 MBeans를 관리하는 서비스의 집합으로 구성
+
+분산 서비스 레벨
+	JMX관리자를 구현하기 위한 인터페이스와 컴포넌트를 제공
+	여러 에이전트들에서 제공하는 정보를 관리할 수 있는 화면 담당
+
+
+JMX를 모니터링할 수 있는 도구를 3개 이상 나열하고 링크도 포함시키시오.
+
+jconsole - http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html
+visualvm - https://visualvm.github.io/
+jmc - http://www.oracle.com/technetwork/java/javase/2col/jmc-relnotes-2004763.html
+
+Web access log 의 패턴을 확인해 보고, 각 패턴에 대하여 서술하시오.
+	Common 로그
+		LogFormat "%h %l %u %t \"%r\" %>s %b" common
+		예 - 127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+
+		%h -> 서버에 요청한 클라이언트의 IP 주소
+		%l -> 클라이언트 컴퓨터의 identd가 제공할 클라이언트의 RFC1413 신원 
+		%u -> HTTP인증으로 알아낸 요청한 사용자의 userid
+		%t -> 서버가 요청처리를 마친 시간 dd/mm/yyyy:hh:mm:ss 의 형식
+		%r -> 클라이언트의 요청
+		%>s -> 서버가 클라이언트에게 보내는 상태 코드
+		%b -> 헤더를 제외한 클라이언트에게 보내는 내용의 크기
+
+	Combined 로그
+		LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined
+		예 - 127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326 "http://www.example.com/start.html" "Mozilla/4.08 [en] (Win98; I ;Nav)"
+
+		\"%{Referer}i\" -> HTTP요청 헤더, 클라이언트가 참조했다고 서버에게 알린 사이트
+		\"%{User-agent}i\" -> User-agent HTTP 요청 헤더. 클라이언트 브라우저가 자신에 대해 알리는 식별 정보
+
+
+자바 GC 종류를 모두 나열 하시오.
+	마이너GC - Bump-the-pointer, TLABs(Thread-Local Allocation Buffers)
+	메이저GC - Serial GC, Parallel GC, Parallel Old GC, CMS(Concurrent Mark & Sweep GC), G1(Garbage First) GC
+
+GC 상황을 모니터링할 수 있는 도구를 3개 이상 나열하고, 링크도 포함시키시오.
+	jstat - http://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html
+	HPJMeter - https://h20392.www2.hpe.com/portal/swdepot/displayProductInfo.do?productNumber=HPJMETER
+	Visual GC - http://www.oracle.com/technetwork/java/visualgc-136680.html
+
+참고 문헌
+
+로그파일 - https://httpd.apache.org/docs/2.4/ko/logs.html
+Java Garbage Collection - http://d2.naver.com/helloworld/1329
+Garbage Collection 모니터링 방법 - http://d2.naver.com/helloworld/6043
