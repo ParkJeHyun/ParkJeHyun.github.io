@@ -1,27 +1,12 @@
-name: Jehyun Park
-author: Jehyun Park
-baseurl: /
-description: theme for jekyll
-twitter: http://www.twitter.com/
-facebook: http://www.facebook.com
-email: lovegjgjgj@naver.com
+# Setup
+name:         ParkJeHyun's Blog
+tagline:      A responsive theme for your project on GitHub Pages
+baseurl:      ""
+locale:       "en"
 
-##Make sure to edit the above fields, especially for disqus.
+# Gems
+gems:
+  - jekyll-paginate
 
-
-highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions: ["tables"]
-
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
+#Others
+markdown: kramdown
